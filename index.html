@@ -1,0 +1,192 @@
+<!-- index.html - صفحة دخول شبكة الواي فاي -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>شبكة الواي فاي</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style id="dynamicStyles"></style>
+  </head>
+  <body class="min-h-screen flex items-center justify-center p-4">
+    <div
+      id="mainCard"
+      class="w-full max-w-md p-6 rounded-xl shadow-lg bg-gray-800 text-white relative"
+    >
+      <div class="flex flex-col items-center gap-2">
+        <img src="wifi.png" alt="Wifi" class="w-16" />
+        <h1 id="title" class="text-2xl font-bold">عنوان الشبكة</h1>
+        <p id="date" class="text-sm text-gray-300"></p>
+
+        <marquee
+          id="marquee"
+          class="bg-gray-700 px-2 py-1 rounded text-sm my-2"
+        ></marquee>
+
+        <input
+          id="cardNumber"
+          type="text"
+          placeholder="أدخل رمز الكرت هنا"
+          class="w-full p-2 rounded bg-gray-700 text-white text-center"
+        />
+
+        <label class="mt-4 text-sm">اختر السرعة المناسبة</label>
+        <select
+          id="speedOptions"
+          class="w-full p-2 rounded bg-gray-700 text-white"
+        >
+          <option>اختر سرعة</option>
+        </select>
+        <button
+          class="mt-4 w-full bg-blue-600 hover:bg-blue-700 transition py-2 rounded"
+        >
+          تسجيل الدخول
+        </button>
+
+        <div class="flex gap-2 mt-4">
+          <button
+            onclick="openModal('pricesModal')"
+            class="bg-gray-700 py-2 px-4 rounded"
+          >
+            💲 الأسعار
+          </button>
+          <button
+            onclick="openModal('salesModal')"
+            class="bg-gray-700 py-2 px-4 rounded"
+          >
+            🛍 نقاط البيع
+          </button>
+        </div>
+
+        <div id="slider" class="mt-4 w-full">
+          <!-- سيتم ملؤه بالصور -->
+        </div>
+
+        <p id="support" class="text-xs text-gray-300 mt-4"></p>
+        <p id="manager" class="text-xs text-gray-300"></p>
+      </div>
+    </div>
+
+    <!-- نافذة الأسعار -->
+    <div
+      id="pricesModal"
+      class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+    >
+      <div class="bg-white text-black p-6 rounded-xl max-w-md w-full">
+        <h2 class="text-xl font-bold mb-4">الأسعار</h2>
+        <p id="pricesList"></p>
+        <button
+          onclick="closeModal('pricesModal')"
+          class="mt-4 bg-red-500 text-white py-2 px-4 rounded"
+        >
+          إغلاق
+        </button>
+      </div>
+    </div>
+
+    <!-- نافذة نقاط البيع -->
+    <div
+      id="salesModal"
+      class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+    >
+      <div class="bg-white text-black p-6 rounded-xl max-w-md w-full">
+        <h2 class="text-xl font-bold mb-4">نقاط البيع</h2>
+        <p id="salesList"></p>
+        <button
+          onclick="closeModal('salesModal')"
+          class="mt-4 bg-red-500 text-white py-2 px-4 rounded"
+        >
+          إغلاق
+        </button>
+      </div>
+    </div>
+    <script>
+      async function loadConfig() {
+        const res = await fetch("config.json");
+        const config = await res.json();
+
+        const setText = (id, text) =>
+          (document.getElementById(id).textContent = text);
+        const fillList = (id, items) => {
+          const container = document.getElementById(id);
+          container.innerHTML = items
+            .map((item) => `<li>${item}</li>`)
+            .join("");
+        };
+
+        setText("title", config.title);
+        setText("marquee", config.marqueeText);
+        setText(
+          "support",
+          `خدمة العملاء: ${config.supportNumbers.join(" - ")}`
+        );
+        setText("manager", config.managerNote);
+        setText(
+          "date",
+          new Date().toLocaleDateString("ar-YE", {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          })
+        );
+
+        const speedSelect = document.getElementById("speedOptions");
+        config.speedOptions.forEach((speed) => {
+          const opt = document.createElement("option");
+          opt.value = speed.value;
+          opt.textContent = speed.label;
+          speedSelect.appendChild(opt);
+        });
+
+        fillList("pricesList", config.prices);
+        fillList("salesList", config.salesPoints);
+
+        const slider = document.getElementById("slider");
+        slider.innerHTML = config.cardImageSlider
+          .map((img) => `<img src="${img}" class="w-full mb-2 rounded">`)
+          .join("");
+
+        const style = `
+      body {
+        background-color: ${config.backgroundColor};
+        color: ${config.textColor};
+        font-family: '${config.fontFamily}', sans-serif;
+      }
+      button {
+        background-color: ${config.primaryButtonColor};
+      }
+      button:hover {
+        background-color: ${config.accentColor};
+      }
+    `;
+        document.getElementById("dynamicStyles").textContent = style;
+
+        // 🎨 تطبيق الثيم حسب config.theme
+        switch (config.theme) {
+          case "ramadan":
+            document.body.classList.add("bg-[url('ramadan-bg.jpg')]");
+            document.body.classList.add("bg-cover", "bg-center");
+            break;
+
+          case "eid":
+            document.body.classList.add("bg-[url('eid-bg.jpg')]");
+            document.body.classList.add("bg-cover", "bg-center");
+            break;
+
+          case "friday":
+            document.body.classList.add("bg-[url('friday-bg.jpg')]");
+            document.body.classList.add("bg-cover", "bg-center");
+            break;
+        }
+      }
+
+      const openModal = (id) =>
+        document.getElementById(id).classList.remove("hidden");
+      const closeModal = (id) =>
+        document.getElementById(id).classList.add("hidden");
+
+      loadConfig();
+    </script>
+  </body>
+</html>

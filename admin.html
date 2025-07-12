@@ -1,0 +1,217 @@
+<!-- admin.html - لوحة التحكم لتوليد ملف config.json مع دعم الأسعار ونقاط البيع -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>لوحة تحكم شبكة الواي فاي</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="bg-gray-900 text-white min-h-screen flex items-center justify-center p-6"
+  >
+    <div class="w-full max-w-3xl bg-gray-800 rounded-2xl shadow-lg p-6">
+      <h2 class="text-2xl font-bold mb-4 text-center">
+        لوحة التحكم - إعداد صفحة الدخول
+      </h2>
+      <form id="configForm" class="space-y-4">
+        <!-- الحقول السابقة -->
+        <div>
+          <label class="block mb-1">عنوان الشبكة</label>
+          <input
+            type="text"
+            name="title"
+            class="w-full p-2 rounded bg-gray-700 text-white"
+          />
+        </div>
+
+        <div>
+          <label class="block mb-1">نص الشريط المتحرك</label>
+          <input
+            type="text"
+            name="marqueeText"
+            class="w-full p-2 rounded bg-gray-700 text-white"
+          />
+        </div>
+
+        <div>
+          <label class="block mb-1">الخيارات المتاحة للسرعة</label>
+          <div id="speedOptionsWrapper" class="space-y-2">
+            <div class="flex gap-2">
+              <input
+                type="text"
+                placeholder="اسم السرعة (مثلاً: عالية)"
+                class="w-1/2 p-2 rounded bg-gray-700 text-white speedLabel"
+              />
+              <input
+                type="number"
+                placeholder="القيمة (ميجابايت)"
+                class="w-1/2 p-2 rounded bg-gray-700 text-white speedValue"
+              />
+            </div>
+          </div>
+          <button
+            type="button"
+            onclick="addSpeedOption()"
+            class="mt-2 bg-blue-600 hover:bg-blue-700 transition px-4 py-1 rounded text-sm"
+          >
+            + إضافة سرعة
+          </button>
+        </div>
+
+        <div>
+          <label class="block mb-1">أرقام خدمة العملاء (افصلها بفاصلة)</label>
+          <input
+            type="text"
+            name="supportNumbers"
+            class="w-full p-2 rounded bg-gray-700 text-white"
+          />
+        </div>
+
+        <div>
+          <label class="block mb-1">ملاحظة في الأسفل</label>
+          <input
+            type="text"
+            name="managerNote"
+            class="w-full p-2 rounded bg-gray-700 text-white"
+          />
+        </div>
+
+        <div>
+          <label class="block mb-1">ألوان التصميم</label>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label>لون الخلفية</label>
+              <input type="color" name="backgroundColor" class="w-full" />
+            </div>
+            <div>
+              <label>لون النص</label>
+              <input type="color" name="textColor" class="w-full" />
+            </div>
+            <div>
+              <label>لون الأزرار</label>
+              <input type="color" name="primaryButtonColor" class="w-full" />
+            </div>
+            <div>
+              <label>لون التمييز</label>
+              <input type="color" name="accentColor" class="w-full" />
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label class="block mb-1"
+            >الخط المستخدم (مثلاً Cairo أو Tajawal)</label
+          >
+          <input
+            type="text"
+            name="fontFamily"
+            class="w-full p-2 rounded bg-gray-700 text-white"
+          />
+        </div>
+
+        <div>
+          <label class="block mb-1"
+            >مسارات الصور الإعلانية (افصلها بفاصلة)</label
+          >
+          <textarea
+            name="cardImageSlider"
+            rows="3"
+            class="w-full p-2 rounded bg-gray-700 text-white"
+          ></textarea>
+        </div>
+
+        <div>
+          <label class="block mb-1">الثيم</label>
+          <select
+            name="theme"
+            class="w-full p-2 rounded bg-gray-700 text-white"
+          >
+            <option value="default">عادي</option>
+            <option value="ramadan">رمضان</option>
+            <option value="friday">جمعة</option>
+            <option value="eid">عيد</option>
+          </select>
+        </div>
+
+        <!-- جديد: الأسعار ونقاط البيع -->
+        <div>
+          <label class="block mb-1">الأسعار (كل سطر سعر)</label>
+          <textarea
+            name="prices"
+            rows="3"
+            class="w-full p-2 rounded bg-gray-700 text-white"
+          ></textarea>
+        </div>
+
+        <div>
+          <label class="block mb-1">نقاط البيع (كل سطر نقطة)</label>
+          <textarea
+            name="salesPoints"
+            rows="3"
+            class="w-full p-2 rounded bg-gray-700 text-white"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-green-600 py-2 rounded font-bold hover:bg-green-700 transition"
+        >
+          تحميل ملف الإعدادات
+        </button>
+      </form>
+    </div>
+
+    <script>
+      function addSpeedOption() {
+        const wrapper = document.getElementById("speedOptionsWrapper");
+        const row = document.createElement("div");
+        row.className = "flex gap-2";
+        row.innerHTML = `
+    <input type="text" placeholder="اسم السرعة" class="w-1/2 p-2 rounded bg-gray-700 text-white speedLabel">
+    <input type="number" placeholder="القيمة" class="w-1/2 p-2 rounded bg-gray-700 text-white speedValue">
+  `;
+        wrapper.appendChild(row);
+      }
+
+      document.getElementById("configForm").onsubmit = function (e) {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData.entries());
+
+        const speedLabels = Array.from(
+          document.querySelectorAll(".speedLabel")
+        ).map((el) => el.value.trim());
+        const speedValues = Array.from(
+          document.querySelectorAll(".speedValue")
+        ).map((el) => el.value.trim());
+        data.speedOptions = speedLabels.map((label, i) => ({
+          label,
+          value: speedValues[i],
+        }));
+        data.supportNumbers = data.supportNumbers
+          .split(",")
+          .map((s) => s.trim());
+        data.cardImageSlider = data.cardImageSlider
+          .split(",")
+          .map((s) => s.trim());
+        data.prices = data.prices
+          .split("\n")
+          .map((s) => s.trim())
+          .filter(Boolean);
+        data.salesPoints = data.salesPoints
+          .split("\n")
+          .map((s) => s.trim())
+          .filter(Boolean);
+
+        const json = JSON.stringify(data, null, 2);
+        const blob = new Blob([json], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "config.json";
+        a.click();
+        URL.revokeObjectURL(url);
+      };
+    </script>
+  </body>
+</html>

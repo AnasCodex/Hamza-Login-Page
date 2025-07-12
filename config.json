@@ -1,0 +1,29 @@
+{
+  "title": "Anas Codex",
+  "marqueeText": "اهلا وسهلا بكم في شبكة حمزة المقطري - نتمنى لكم اطيب الامنيات",
+  "supportNumbers": ["730110440", "772346957"],
+  "managerNote": "انس يرحب بكم",
+  "backgroundColor": "#cc2424",
+  "textColor": "#ffffff",
+  "primaryButtonColor": "#0062ff",
+  "accentColor": "#000000",
+  "fontFamily": "Cairo",
+  "cardImageSlider": ["1.png", "2.png"],
+  "theme": "friday",
+  "prices": ["100", "200", "500", "1000"],
+  "salesPoints": ["dfgdgfd", "jjfgjfg", "ktjjhfgjfd"],
+  "speedOptions": [
+    {
+      "label": "عالية",
+      "value": "256"
+    },
+    {
+      "label": "متوسط",
+      "value": "512"
+    },
+    {
+      "label": "منخفض",
+      "value": "1024"
+    }
+  ]
+}
