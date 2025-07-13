@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تفاصيل الحساب - شبكة الواي فاي</title>
+    <script src="js/style.js"></script>
+  </head>
+  <body
+    class="bg-gray-900 text-white min-h-screen flex items-center justify-center p-4"
+  >
+    <div class="bg-gray-800 p-6 rounded-2xl shadow-xl max-w-md w-full">
+      <div class="flex flex-col items-center">
+        <!-- أيقونة الواي فاي -->
+        <svg height="90" width="90" fill="#00a6f9" viewBox="0 0 504.8 504.8">
+          <path
+            d="M480 203.5c-6.4 0-12-2.4-16.8-7.2-116.8-116-305.6-116-422.4 0-9.6 9.6-24.8 9.6-33.6 0s-9.6-24.8 0-33.6c135.2-135.2 355.2-135.2 490.4 0 9.6 9.6 9.6 24.8 0 33.6-4.8 4.8-10.4 7.2-17.6 7.2z"
+          />
+          <path
+            d="M396 288.3c-6.4 0-12-2.4-16.8-7.2-70.4-70.4-184-70.4-254.4 0-9.6 9.6-24.8 9.6-33.6 0s-9.6-24.8 0-33.6c88.8-88.8 232.8-88.8 321.6 0 9.6 9.6 9.6 24.8 0 33.6-4.8 4.8-10.4 7.2-17.6 7.2z"
+          />
+          <path
+            d="M309.6 369.1c-6.4 0-12-2.4-16.8-7.2-22.4-22.4-59.2-22.4-81.6 0-9.6 9.6-24.8 9.6-33.6 0s-9.6-24.8 0-33.6c40.8-40.8 108-40.8 148.8 0 9.6 9.6 9.6 24.8 0 33.6-4.8 4.8-10.4 7.2-17.6 7.2z"
+          />
+          <circle cx="252" cy="419.5" r="24" />
+        </svg>
+
+        <h1 id="title" class="text-3xl font-bold">عنوان الشبكة</h1>
+        <p id="date" class="text-sm text-gray-300"></p>
+        <p class="text-sm text-gray-300 mt-1">تفاصيل الحساب</p>
+      </div>
+
+      <!-- جدول التفاصيل -->
+      <div class="mt-6">
+        <table class="w-full text-sm bg-gray-700 rounded-lg overflow-hidden">
+          <tbody>
+            <tr class="border-b border-gray-600">
+              <td class="p-2 font-medium">متصل منذ:</td>
+              <td class="p-2 text-right">ساعة</td>
+            </tr>
+            <tr class="border-b border-gray-600">
+              <td class="p-2 font-medium">سرعتك الحالية:</td>
+              <td class="p-2 text-right">سرعة عالية</td>
+            </tr>
+            <tr class="border-b border-gray-600">
+              <td class="p-2 font-medium">إجمالي التحميل:</td>
+              <td class="p-2 text-right">512MB</td>
+            </tr>
+            <tr class="border-b border-gray-600">
+              <td class="p-2 font-medium">إجمالي الرفع:</td>
+              <td class="p-2 text-right">126MB</td>
+            </tr>
+            <tr class="border-b border-gray-600">
+              <td class="p-2 font-medium">تحميل هذة الجلسة:</td>
+              <td class="p-2 text-right">126MB</td>
+            </tr>
+            <tr class="border-b border-gray-600">
+              <td class="p-2 font-medium">الوقت المتبقي:</td>
+              <td class="p-2 text-right">ساعة</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-medium">التحميل المتبقي:</td>
+              <td class="p-2 text-right">200MB</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- القوائم -->
+      <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+        <div>
+          <label class="block mb-1">اختر السرعة المناسبة</label>
+          <select class="w-full p-2 rounded bg-gray-700 text-white">
+            <option>سرعة اقتصادية</option>
+            <option>سرعة عادية</option>
+            <option>سرعة متوسطة</option>
+            <option>سرعة عالية</option>
+            <option>سرعة عالية جداً</option>
+          </select>
+        </div>
+        <div>
+          <label class="block mb-1">عدد المستخدمين للكرت</label>
+          <select class="w-full p-2 rounded bg-gray-700 text-white">
+            <option>الافتراضي</option>
+          </select>
+        </div>
+        <div>
+          <label class="block mb-1">هل تريد استخدام VPN</label>
+          <select class="w-full p-2 rounded bg-gray-700 text-white">
+            <option>بدون VPN</option>
+            <option>باستخدام VPN</option>
+          </select>
+        </div>
+        <div>
+          <label class="block mb-1">التصفح</label>
+          <select class="w-full p-2 rounded bg-gray-700 text-white">
+            <option>كل المواقع</option>
+            <option>واتساب فقط</option>
+            <option>فيسبوك فقط</option>
+          </select>
+        </div>
+        <div>
+          <label class="block mb-1">التحديثات</label>
+          <select class="w-full p-2 rounded bg-gray-700 text-white">
+            <option>إيقاف التحديثات</option>
+            <option>السماح بالتحديثات</option>
+          </select>
+        </div>
+        <div>
+          <label class="block mb-1">ربط الماك</label>
+          <select class="w-full p-2 rounded bg-gray-700 text-white">
+            <option>ربط الجهاز ب أول ماك</option>
+            <option>عدم الربط</option>
+            <option>الافتراضي</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- الأزرار -->
+      <div class="mt-6 flex flex-col gap-3">
+        <button
+          class="w-full bg-blue-600 hover:bg-blue-700 py-2 rounded font-bold"
+        >
+          تطبيق الخدمات
+        </button>
+        <button
+          class="w-full bg-gray-700 hover:bg-gray-600 py-2 rounded font-bold"
+        >
+          تسجيل بكرت آخر
+        </button>
+      </div>
+
+      <p class="text-center text-sm text-gray-400 mt-4">
+        خدمة العملاء: 770503335 - 711303335
+      </p>
+    </div>
+
+    <script>
+      async function loadConfig() {
+        const res = await fetch("config.json");
+        const config = await res.json();
+
+        const setText = (id, text) =>
+          (document.getElementById(id).textContent = text);
+        const fillList = (id, items) => {
+          const container = document.getElementById(id);
+          container.innerHTML = items
+            .map((item) => `<li>${item}</li>`)
+            .join("");
+        };
+
+        setText("title", config.title);
+        switch (config.theme) {
+          case "ramadan":
+            document.body.classList.add("bg-[url('ramadan-bg.jpg')]");
+            document.body.classList.add("bg-cover", "bg-center");
+            break;
+
+          case "eid":
+            document.body.classList.add("bg-[url('eid-bg.jpg')]");
+            document.body.classList.add("bg-cover", "bg-center");
+            break;
+
+          case "friday":
+            document.body.classList.add("bg-[url('friday-bg.jpg')]");
+            document.body.classList.add("bg-cover", "bg-center");
+            break;
+
+          case "default":
+            document.body.classList.add("bg-[url('adminBG.jpg')]");
+            document.body.classList.add("bg-cover", "bg-center");
+            break;
+        }
+      }
+      loadConfig();
+    </script>
+  </body>
+</html>
