@@ -5,8 +5,36 @@
     <meta charset="UTF-8" />
     <title>شبكة الواي فاي</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/style.js"></script>
     <style id="dynamicStyles"></style>
+    <link rel="stylesheet" href="css/swiper.css" />
+    <script src="js/swiper.js"></script>
+    <style>
+      .swiper-button-next,
+      .swiper-button-prev {
+        width: 32px;
+        height: 32px;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        transition: background-color 0.2s ease;
+      }
+
+      .swiper-button-next:hover,
+      .swiper-button-prev:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+
+      .swiper-button-next::after,
+      .swiper-button-prev::after {
+        font-size: 16px;
+        font-weight: bold;
+      }
+    </style>
   </head>
   <body class="min-h-screen flex items-center justify-center p-4">
     <div
@@ -14,56 +42,113 @@
       class="w-full max-w-md p-6 rounded-xl shadow-lg bg-gray-800 text-white relative"
     >
       <div class="flex flex-col items-center gap-2">
-        <img src="wifi.png" alt="Wifi" class="w-16" />
-        <h1 id="title" class="text-2xl font-bold">عنوان الشبكة</h1>
+        <svg
+          height="90px"
+          width="90px"
+          version="1.1"
+          id="Layer_1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 0 504.8 504.8"
+          xml:space="preserve"
+        >
+          <g>
+            <path
+              style="fill: #00a6f9"
+              d="M480,203.5c-6.4,0-12-2.4-16.8-7.2c-116.8-116-305.6-116-422.4,0c-9.6,9.6-24.8,9.6-33.6,0
+		c-9.6-9.6-9.6-24.8,0-33.6c135.2-135.2,355.2-135.2,490.4,0c9.6,9.6,9.6,24.8,0,33.6C492.8,201.1,486.4,203.5,480,203.5z"
+            />
+            <path
+              style="fill: #00a6f9"
+              d="M396,288.3c-6.4,0-12-2.4-16.8-7.2c-70.4-70.4-184-70.4-254.4,0c-9.6,9.6-24.8,9.6-33.6,0
+		c-9.6-9.6-9.6-24.8,0-33.6c88.8-88.8,232.8-88.8,321.6,0c9.6,9.6,9.6,24.8,0,33.6C408,285.9,402.4,288.3,396,288.3z"
+            />
+            <path
+              style="fill: #00a6f9"
+              d="M309.6,369.1c-6.4,0-12-2.4-16.8-7.2c-22.4-22.4-59.2-22.4-81.6,0c-9.6,9.6-24.8,9.6-33.6,0
+		c-9.6-9.6-9.6-24.8,0-33.6c40.8-40.8,108-40.8,148.8,0c9.6,9.6,9.6,24.8,0,33.6C321.6,366.7,316,369.1,309.6,369.1z"
+            />
+            <circle style="fill: #00a6f9" cx="252" cy="419.5" r="24" />
+          </g>
+          <g>
+            <path
+              style="fill: #0093f7"
+              d="M7.2,189.1c-0.8,0.8-2.4,2.4-3.2,4c0.8,1.6,1.6,2.4,3.2,4c9.6,9.6,24.8,9.6,33.6,0
+		c116.8-116.8,305.6-116.8,422.4,0c4.8,4.8,11.2,7.2,16.8,7.2s12-2.4,16.8-7.2c0.8-0.8,2.4-2.4,3.2-4c-0.8-1.6-1.6-2.4-3.2-4
+		C361.6,53.9,142.4,53.9,7.2,189.1z"
+            />
+            <path
+              style="fill: #0093f7"
+              d="M91.2,273.9c-0.8,0.8-2.4,2.4-3.2,4c0.8,1.6,1.6,2.4,3.2,4c9.6,9.6,24.8,9.6,33.6,0
+		c70.4-70.4,184-70.4,254.4,0c4.8,4.8,11.2,7.2,16.8,7.2s12-2.4,16.8-7.2c0.8-0.8,2.4-2.4,3.2-4c-0.8-1.6-1.6-2.4-3.2-4
+		C324,185.1,180,185.1,91.2,273.9z"
+            />
+            <path
+              style="fill: #0093f7"
+              d="M177.6,354.7c-0.8,0.8-2.4,2.4-3.2,4c0.8,1.6,1.6,2.4,3.2,4c9.6,9.6,24.8,9.6,33.6,0
+		c22.4-22.4,59.2-22.4,81.6,0c4.8,4.8,11.2,7.2,16.8,7.2s12-2.4,16.8-7.2c0.8-0.8,2.4-2.4,3.2-4c-0.8-1.6-1.6-2.4-3.2-4
+		C285.6,313.1,218.4,313.1,177.6,354.7z"
+            />
+            <path
+              style="fill: #0093f7"
+              d="M252,421.9c-8,0-16,4-20,10.4c4,6.4,12,10.4,20,10.4s16-4,20-10.4C268,426.7,260,421.9,252,421.9z"
+            />
+          </g>
+        </svg>
+        <h1 id="title" class="text-3xl font-bold">عنوان الشبكة</h1>
         <p id="date" class="text-sm text-gray-300"></p>
 
         <marquee
           id="marquee"
-          class="bg-gray-700 px-2 py-1 rounded text-sm my-2"
+          class="bg-[#5d5f6457] px-2 py-1 rounded text-sm my-2"
         ></marquee>
 
+        <label class="mt-1 mb-2 text-lg">أدخل رمز الكرت هنا</label>
         <input
           id="cardNumber"
           type="text"
           placeholder="أدخل رمز الكرت هنا"
-          class="w-full p-2 rounded bg-gray-700 text-white text-center"
+          class="w-full p-2 rounded bg-[#5d5f6457] text-white text-center"
         />
 
-        <label class="mt-4 text-sm">اختر السرعة المناسبة</label>
+        <label class="mt-2 text-lg">اختر السرعة المناسبة</label>
         <select
           id="speedOptions"
           class="w-full p-2 rounded bg-gray-700 text-white"
         >
           <option>اختر سرعة</option>
         </select>
-        <button
-          class="mt-4 w-full bg-blue-600 hover:bg-blue-700 transition py-2 rounded"
-        >
+        <button class="mt-4 w-full bg-[#5d5f6457] transition py-2 rounded">
           تسجيل الدخول
         </button>
 
-        <div class="flex gap-2 mt-4">
+        <div class="flex gap-2 mt-4 w-full">
           <button
             onclick="openModal('pricesModal')"
-            class="bg-gray-700 py-2 px-4 rounded"
+            class="bg-[#5d5f6457] py-2 px-4 rounded w-1/2"
           >
             💲 الأسعار
           </button>
           <button
             onclick="openModal('salesModal')"
-            class="bg-gray-700 py-2 px-4 rounded"
+            class="bg-[#5d5f6457] py-2 px-4 rounded w-1/2"
           >
             🛍 نقاط البيع
           </button>
         </div>
-
-        <div id="slider" class="mt-4 w-full">
-          <!-- سيتم ملؤه بالصور -->
+        <div class="mt-4 w-full">
+          <div class="swiper" id="slider">
+            <div class="swiper-wrapper">
+              <!-- سيتم تعبئته تلقائياً -->
+            </div>
+            <!-- أزرار التنقل -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
         </div>
 
-        <p id="support" class="text-xs text-gray-300 mt-4"></p>
-        <p id="manager" class="text-xs text-gray-300"></p>
+        <p id="support" class="text-lg text-gray-300 mt-4"></p>
+        <p id="manager" class="text-sm text-gray-300"></p>
       </div>
     </div>
 
@@ -72,12 +157,30 @@
       id="pricesModal"
       class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
     >
-      <div class="bg-white text-black p-6 rounded-xl max-w-md w-full">
+      <div class="bg-gray-800 text-white p-6 rounded-xl max-w-2xl w-full">
         <h2 class="text-xl font-bold mb-4">الأسعار</h2>
-        <p id="pricesList"></p>
+        <div class="overflow-x-auto">
+          <table
+            class="w-full text-sm text-center text-gray-500 dark:text-gray-400 rounded"
+          >
+            <thead
+              class="text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+            >
+              <tr>
+                <th class="py-2 px-3 border">الفئة</th>
+                <th class="py-2 px-3 border">الوقت</th>
+                <th class="py-2 px-3 border">الرصيد</th>
+                <th class="py-2 px-3 border">الصلاحية</th>
+              </tr>
+            </thead>
+            <tbody id="pricesList" class="bg-gray-800 border-gray-700">
+              <!-- سيتم تعبئته تلقائياً -->
+            </tbody>
+          </table>
+        </div>
         <button
           onclick="closeModal('pricesModal')"
-          class="mt-4 bg-red-500 text-white py-2 px-4 rounded"
+          class="mt-4 bg-red-500 text-white py-2 px-4 rounded mr-auto block"
         >
           إغلاق
         </button>
@@ -89,17 +192,18 @@
       id="salesModal"
       class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
     >
-      <div class="bg-white text-black p-6 rounded-xl max-w-md w-full">
+      <div class="bg-gray-800 text-white p-6 rounded-xl max-w-md w-full">
         <h2 class="text-xl font-bold mb-4">نقاط البيع</h2>
         <p id="salesList"></p>
         <button
           onclick="closeModal('salesModal')"
-          class="mt-4 bg-red-500 text-white py-2 px-4 rounded"
+          class="mt-4 bg-red-500 text-white py-2 px-4 rounded mr-auto block"
         >
           إغلاق
         </button>
       </div>
     </div>
+
     <script>
       async function loadConfig() {
         const res = await fetch("config.json");
@@ -139,13 +243,48 @@
           speedSelect.appendChild(opt);
         });
 
-        fillList("pricesList", config.prices);
+        const fillPricesTable = (items) => {
+          const tbody = document.getElementById("pricesList");
+          tbody.innerHTML = items
+            .map(
+              (row) => `
+      <tr>
+        <td class="border py-2 px-3">${row.category}</td>
+        <td class="border py-2 px-3">${row.time}</td>
+        <td class="border py-2 px-3">${row.amount}</td>
+        <td class="border py-2 px-3">${row.validity}</td>
+      </tr>
+    `
+            )
+            .join("");
+        };
+
+        fillPricesTable(config.prices);
+
         fillList("salesList", config.salesPoints);
 
-        const slider = document.getElementById("slider");
-        slider.innerHTML = config.cardImageSlider
-          .map((img) => `<img src="${img}" class="w-full mb-2 rounded">`)
+        const swiperWrapper = document.querySelector("#slider .swiper-wrapper");
+        swiperWrapper.innerHTML = config.cardImageSlider
+          .map(
+            (img) =>
+              `<div class="swiper-slide"><img src="${img}" class="rounded w-full" /></div>`
+          )
           .join("");
+
+        new Swiper("#slider", {
+          loop: true,
+          autoplay: {
+            delay: 3000,
+          },
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+        });
 
         const style = `
       body {

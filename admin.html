@@ -4,12 +4,12 @@
   <head>
     <meta charset="UTF-8" />
     <title>لوحة تحكم شبكة الواي فاي</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/style.js"></script>
   </head>
   <body
-    class="bg-gray-900 text-white min-h-screen flex items-center justify-center p-6"
+    class="bg-white text-white min-h-screen flex items-center justify-center p-6"
   >
-    <div class="w-full max-w-3xl bg-gray-800 rounded-2xl shadow-lg p-6">
+    <div class="w-full max-w-3xl bg-[#3d475596] rounded-2xl shadow-lg p-6">
       <h2 class="text-2xl font-bold mb-4 text-center">
         لوحة التحكم - إعداد صفحة الدخول
       </h2>
@@ -135,12 +135,38 @@
 
         <!-- جديد: الأسعار ونقاط البيع -->
         <div>
-          <label class="block mb-1">الأسعار (كل سطر سعر)</label>
-          <textarea
-            name="prices"
-            rows="3"
-            class="w-full p-2 rounded bg-gray-700 text-white"
-          ></textarea>
+          <label class="block mb-1">قائمة الأسعار</label>
+          <div id="pricesWrapper" class="space-y-2">
+            <div class="grid grid-cols-4 gap-2">
+              <input
+                type="text"
+                placeholder="الفئة"
+                class="p-2 rounded bg-gray-700 text-white priceCategory"
+              />
+              <input
+                type="text"
+                placeholder="الوقت"
+                class="p-2 rounded bg-gray-700 text-white priceTime"
+              />
+              <input
+                type="text"
+                placeholder="الرصيد"
+                class="p-2 rounded bg-gray-700 text-white priceAmount"
+              />
+              <input
+                type="text"
+                placeholder="الصلاحية"
+                class="p-2 rounded bg-gray-700 text-white priceValidity"
+              />
+            </div>
+          </div>
+          <button
+            type="button"
+            onclick="addPriceRow()"
+            class="mt-2 bg-blue-600 hover:bg-blue-700 transition px-4 py-1 rounded text-sm"
+          >
+            + إضافة صف
+          </button>
         </div>
 
         <div>
@@ -154,7 +180,7 @@
 
         <button
           type="submit"
-          class="w-full bg-green-600 py-2 rounded font-bold hover:bg-green-700 transition"
+          class="w-full bg-[#202020] py-2 rounded font-bold hover:bg-[#252525] transition text-white"
         >
           تحميل ملف الإعدادات
         </button>
@@ -162,6 +188,8 @@
     </div>
 
     <script>
+      document.body.classList.add("bg-[url('adminBG.jpg')]");
+      document.body.classList.add("bg-cover", "bg-center");
       function addSpeedOption() {
         const wrapper = document.getElementById("speedOptionsWrapper");
         const row = document.createElement("div");
@@ -170,6 +198,18 @@
     <input type="text" placeholder="اسم السرعة" class="w-1/2 p-2 rounded bg-gray-700 text-white speedLabel">
     <input type="number" placeholder="القيمة" class="w-1/2 p-2 rounded bg-gray-700 text-white speedValue">
   `;
+        wrapper.appendChild(row);
+      }
+      function addPriceRow() {
+        const wrapper = document.getElementById("pricesWrapper");
+        const row = document.createElement("div");
+        row.className = "grid grid-cols-4 gap-2";
+        row.innerHTML = `
+      <input type="text" placeholder="الفئة" class="p-2 rounded bg-gray-700 text-white priceCategory">
+      <input type="text" placeholder="الوقت" class="p-2 rounded bg-gray-700 text-white priceTime">
+      <input type="text" placeholder="الرصيد" class="p-2 rounded bg-gray-700 text-white priceAmount">
+      <input type="text" placeholder="الصلاحية" class="p-2 rounded bg-gray-700 text-white priceValidity">
+    `;
         wrapper.appendChild(row);
       }
 
@@ -194,10 +234,26 @@
         data.cardImageSlider = data.cardImageSlider
           .split(",")
           .map((s) => s.trim());
-        data.prices = data.prices
-          .split("\n")
-          .map((s) => s.trim())
-          .filter(Boolean);
+        const categories = Array.from(
+          document.querySelectorAll(".priceCategory")
+        ).map((el) => el.value.trim());
+        const times = Array.from(document.querySelectorAll(".priceTime")).map(
+          (el) => el.value.trim()
+        );
+        const amounts = Array.from(
+          document.querySelectorAll(".priceAmount")
+        ).map((el) => el.value.trim());
+        const validities = Array.from(
+          document.querySelectorAll(".priceValidity")
+        ).map((el) => el.value.trim());
+
+        data.prices = categories.map((_, i) => ({
+          category: categories[i],
+          time: times[i],
+          amount: amounts[i],
+          validity: validities[i],
+        }));
+
         data.salesPoints = data.salesPoints
           .split("\n")
           .map((s) => s.trim())
