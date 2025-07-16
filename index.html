@@ -39,7 +39,7 @@
   <body class="min-h-screen flex items-center justify-center p-4">
     <div
       id="mainCard"
-      class="w-full max-w-md p-6 bg-white/50 rounded-[10px] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-[5px] border border-white/30 text-black relative"
+      class="w-full max-w-md p-6 bg-white/50 dark:bg-black/50 rounded-[10px] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-[5px] border border-white/30 dark:border-black/30 text-black dark:text-white relative"
     >
       <div class="flex flex-col items-center gap-2">
         <svg
@@ -95,12 +95,14 @@
             />
           </g>
         </svg>
-        <h1 id="title" class="text-3xl font-bold">عنوان الشبكة</h1>
-        <p id="date" class="text-sm text-black"></p>
+        <h1 id="title" class="text-3xl font-bold text-black dark:text-white">
+          عنوان الشبكة
+        </h1>
+        <p id="date" class="text-sm text-black dark:text-white"></p>
 
         <marquee
           id="marquee"
-          class="bg-[#0000001c] px-2 py-1 rounded text-sm my-2"
+          class="bg-[#0000001c] text-black dark:text-white px-2 py-1 rounded text-sm my-2"
         ></marquee>
 
         <label class="mt-1 mb-2 text-lg">أدخل رمز الكرت هنا</label>
@@ -108,30 +110,32 @@
           id="cardNumber"
           type="text"
           placeholder="أدخل رمز الكرت هنا"
-          class="w-full p-2 rounded bg-[#0000001c] text-black text-center placeholder-black"
+          class="w-full p-2 rounded bg-[#0000001c] text-black dark:text-white text-center placeholder-black dark:placeholder-white"
         />
 
         <label class="mt-2 text-lg">اختر السرعة المناسبة</label>
         <select
           id="speedOptions"
-          class="w-full p-2 rounded bg-[#0000001c] text-black"
+          class="w-full p-2 rounded bg-[#0000001c] text-black dark:text-white"
         >
           <option>اختر سرعة</option>
         </select>
-        <button class="mt-4 w-full bg-[#0000001c] transition py-2 rounded">
+        <button
+          class="mt-4 w-full bg-[#0000001c] transition py-2 rounded text-black dark:text-white"
+        >
           تسجيل الدخول
         </button>
 
         <div class="flex gap-2 mt-4 w-full">
           <button
             onclick="openModal('pricesModal')"
-            class="bg-[#0000001c] py-2 px-4 rounded w-1/2"
+            class="bg-[#0000001c] py-2 px-4 rounded w-1/2 text-black dark:text-white"
           >
             💲 الأسعار
           </button>
           <button
             onclick="openModal('salesModal')"
-            class="bg-[#0000001c] py-2 px-4 rounded w-1/2"
+            class="bg-[#0000001c] py-2 px-4 rounded w-1/2 text-black dark:text-white"
           >
             🛍 نقاط البيع
           </button>
@@ -147,8 +151,11 @@
           </div>
         </div>
 
-        <p id="support" class="text-lg text-black mt-4 text-center"></p>
-        <p id="manager" class="text-sm text-black text-center"></p>
+        <p id="support" class="text-black dark:text-white mt-4 text-center"></p>
+        <p
+          id="manager"
+          class="text-sm text-black dark:text-white text-center"
+        ></p>
       </div>
     </div>
 
