@@ -39,7 +39,7 @@
   <body class="min-h-screen flex items-center justify-center p-4">
     <div
       id="mainCard"
-      class="w-full max-w-md p-6 rounded-xl shadow-lg bg-gray-800 text-white relative"
+      class="w-full max-w-md p-6 bg-white/50 rounded-[10px] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-[5px] border border-white/30 text-black relative"
     >
       <div class="flex flex-col items-center gap-2">
         <svg
@@ -96,11 +96,11 @@
           </g>
         </svg>
         <h1 id="title" class="text-3xl font-bold">عنوان الشبكة</h1>
-        <p id="date" class="text-sm text-gray-300"></p>
+        <p id="date" class="text-sm text-black"></p>
 
         <marquee
           id="marquee"
-          class="bg-[#5d5f6457] px-2 py-1 rounded text-sm my-2"
+          class="bg-[#0000001c] px-2 py-1 rounded text-sm my-2"
         ></marquee>
 
         <label class="mt-1 mb-2 text-lg">أدخل رمز الكرت هنا</label>
@@ -108,30 +108,30 @@
           id="cardNumber"
           type="text"
           placeholder="أدخل رمز الكرت هنا"
-          class="w-full p-2 rounded bg-[#5d5f6457] text-white text-center"
+          class="w-full p-2 rounded bg-[#0000001c] text-black text-center placeholder-black"
         />
 
         <label class="mt-2 text-lg">اختر السرعة المناسبة</label>
         <select
           id="speedOptions"
-          class="w-full p-2 rounded bg-gray-700 text-white"
+          class="w-full p-2 rounded bg-[#0000001c] text-black"
         >
           <option>اختر سرعة</option>
         </select>
-        <button class="mt-4 w-full bg-[#5d5f6457] transition py-2 rounded">
+        <button class="mt-4 w-full bg-[#0000001c] transition py-2 rounded">
           تسجيل الدخول
         </button>
 
         <div class="flex gap-2 mt-4 w-full">
           <button
             onclick="openModal('pricesModal')"
-            class="bg-[#5d5f6457] py-2 px-4 rounded w-1/2"
+            class="bg-[#0000001c] py-2 px-4 rounded w-1/2"
           >
             💲 الأسعار
           </button>
           <button
             onclick="openModal('salesModal')"
-            class="bg-[#5d5f6457] py-2 px-4 rounded w-1/2"
+            class="bg-[#0000001c] py-2 px-4 rounded w-1/2"
           >
             🛍 نقاط البيع
           </button>
@@ -147,8 +147,8 @@
           </div>
         </div>
 
-        <p id="support" class="text-lg text-gray-300 mt-4"></p>
-        <p id="manager" class="text-sm text-gray-300"></p>
+        <p id="support" class="text-lg text-black mt-4"></p>
+        <p id="manager" class="text-sm text-black"></p>
       </div>
     </div>
 
